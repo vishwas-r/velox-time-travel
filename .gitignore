@@ -1,0 +1,27 @@
+# Build & Distribution Artifacts
+dist/
+*.zip
+*.xpi
+*.crx
+
+# Dependencies & Package Managers
+node_modules/
+package-lock.json
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Temporary & Scratch Files
+tmp/
+temp/
+*.log

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeloX Time Travel</title>
+  <link rel="stylesheet" href="../lib/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/flatpickr.min.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body class="velox-app theme-light">
+  <div class="app-shell">
+    
+    <!-- MASTER HEADER -->
+    <header class="app-header">
+      <div class="header-left">
+        <span class="app-logo-wrap" title="VeloX Time Travel">
+          <img src="../icons/velox-brand-logo-dark.png" class="brand-logo-img logo-dark" alt="VeloX" />
+          <img src="../icons/velox-brand-logo.png" class="brand-logo-img logo-light" alt="VeloX" />
+        </span>
+        <span class="wordmark">Time Travel</span>
+      </div>
+      <div class="header-right">
+        <!-- Light/Dark Theme Toggle Button -->
+        <button type="button" class="btn-theme-toggle" id="themeToggleBtn" title="Toggle light/dark theme" aria-label="Toggle theme">
+          <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Master ON/OFF Switch -->
+        <label class="master-switch" title="Toggle time travel on/off">
+          <input type="checkbox" id="masterToggle" role="switch">
+          <span class="switch-slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <!-- LIVE HERO CLOCK SECTION -->
+    <section class="hero-clock-section">
+      <div class="clock-status-row">
+        <div class="clock-status-left">
+          <span class="status-indicator" id="statusDot"></span>
+          <span class="status-label" id="statusText">System Time</span>
+        </div>
+        <button type="button" class="btn-rotate-clock" id="btnRotateReset" title="Sync / Reset to Current Time" aria-label="Sync / Reset clock">
+          <svg class="rotate-clock-icon" width="13" height="13" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 50 14 A 36 36 0 1 0 86 50" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+            <path d="M 75 37 L 88 50 L 75 63" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 50 50 L 33 36" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+            <path d="M 50 50 L 67 33" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="4.5" fill="currentColor"/>
+          </svg>
+          <span class="rotate-clock-text">Sync Now</span>
+        </button>
+      </div>
+      <div class="clock-digits" id="liveTickerTime">--:--:--</div>
+      <div class="clock-meta-row" id="liveTickerMeta">
+        <span id="heroTzLabel">Browser Timezone</span>
+        <span class="meta-separator" id="heroDeltaSeparator" style="display:none;">&bull;</span>
+        <span id="heroDeltaLabel" style="display:none;"></span>
+      </div>
+    </section>
+
+    <!-- MODE TABS (Simple vs Advanced) -->
+    <nav class="mode-nav">
+      <div class="mode-segment">
+        <input type="radio" class="mode-radio" name="modeOption" id="modeSimple" checked>
+        <label class="mode-label" for="modeSimple">Simple</label>
+
+        <input type="radio" class="mode-radio" name="modeOption" id="modeAdvanced">
+        <label class="mode-label" for="modeAdvanced">Advanced</label>
+      </div>
+    </nav>
+
+    <!-- MAIN BODY CONTENT -->
+    <main class="app-body">
+      
+      <!-- SIMPLE MODE VIEW -->
+      <section id="simpleSection" class="mode-view">
+        
+        <!-- Quick Nudge Chips -->
+        <div class="nudge-strip">
+          <button type="button" class="btn-nudge" data-nudge="now">Now</button>
+          <button type="button" class="btn-nudge" data-nudge="+15m">+15m</button>
+          <button type="button" class="btn-nudge" data-nudge="+1h">+1h</button>
+          <button type="button" class="btn-nudge" data-nudge="+1d">+1d</button>
+          <button type="button" class="btn-nudge" data-nudge="+7d">+1w</button>
+          <button type="button" class="btn-nudge" data-nudge="+30d">+1m</button>
+        </div>
+
+        <!-- Target Date and Time -->
+        <div class="form-field position-relative">
+          <div class="field-label-row">
+            <label for="targetDateTime" class="field-label">Target date and time</label>
+            <span class="tz-offset-pill" id="tzOffsetBadge">Local Offset</span>
+          </div>
+          <div class="input-picker-wrapper">
+            <input type="text" class="field-input field-input-date" id="targetDateTime" spellcheck="false" placeholder="YYYY-MM-DD HH:mm:ss" autocomplete="off">
+            <button type="button" class="btn-picker-toggle" id="btnToggleCalendar" title="Open Calendar Picker" aria-label="Open Calendar Picker">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Target Timezone Selector -->
+        <div class="form-field">
+          <div class="field-label-row">
+            <label for="timezoneSelect" class="field-label">Target timezone</label>
+            <button type="button" class="btn-inline-action" id="btnMatchIp" title="Auto-detect timezone from public IP">
+              Auto-match IP
+            </button>
+          </div>
+          <select class="field-input" id="timezoneSelect">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <!-- Toggles Section -->
+        <div class="options-group">
+          <label class="option-row">
+            <span class="option-text">Freeze clock at this time</span>
+            <input type="checkbox" class="option-checkbox" id="freezeClockToggle">
+          </label>
+          <label class="option-row">
+            <span class="option-text">Auto-reload page on apply</span>
+            <input type="checkbox" class="option-checkbox" id="autoReloadToggle">
+          </label>
+        </div>
+
+        <!-- Primary & Secondary Actions -->
+        <div class="actions-group">
+          <button type="button" class="btn-cta" id="btnApply">
+            Apply time travel
+          </button>
+          <button type="button" class="btn-ghost" id="btnReset">
+            Reset
+          </button>
+        </div>
+      </section>
+
+      <!-- ADVANCED MODE VIEW -->
+      <section id="advancedSection" class="mode-view d-none">
+        
+        <!-- Speed Multiplier (Time Warp) -->
+        <div class="panel-section">
+          <div class="panel-header">
+            <span class="panel-title">Speed multiplier</span>
+            <span class="panel-badge" id="speedBadge">1x (Normal)</span>
+          </div>
+          <div class="speed-strip">
+            <button type="button" class="btn-speed" data-speed="0.5">0.5x</button>
+            <button type="button" class="btn-speed active" data-speed="1">1x</button>
+            <button type="button" class="btn-speed" data-speed="2">2x</button>
+            <button type="button" class="btn-speed" data-speed="5">5x</button>
+            <button type="button" class="btn-speed" data-speed="10">10x</button>
+            <button type="button" class="btn-speed" data-speed="60">60x</button>
+            <button type="button" class="btn-speed" data-speed="3600">3600x</button>
+          </div>
+          <div class="panel-hint">60x: 1 second = 1 minute &bull; 3600x: 1 second = 1 hour</div>
+        </div>
+
+        <!-- Interactive Timeline Scrubber -->
+        <div class="panel-section">
+          <div class="panel-header">
+            <span class="panel-title">Timeline scrubber</span>
+            <span class="panel-val" id="scrubberOffsetDisplay">0h offset</span>
+          </div>
+          <input type="range" class="scrubber-range" id="timelineScrubber" min="-24" max="24" step="0.5" value="0">
+          <div class="scrubber-ticks">
+            <span>-24h</span>
+            <span>Current target</span>
+            <span>+24h</span>
+          </div>
+        </div>
+
+        <!-- Presets -->
+        <div class="panel-section">
+          <div class="panel-header">
+            <span class="panel-title">Testing presets</span>
+          </div>
+          <div class="preset-list" id="presetContainer">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Full-Stack & Integration Toggles -->
+        <div class="panel-section">
+          <div class="panel-header">
+            <span class="panel-title">Developer tools</span>
+          </div>
+          
+          <div class="options-group">
+            <label class="option-row">
+              <span class="option-text">Show floating in-page HUD</span>
+              <input type="checkbox" class="option-checkbox" id="hudToggle">
+            </label>
+            <label class="option-row">
+              <span class="option-text">Inject X-Mock-Date HTTP headers</span>
+              <input type="checkbox" class="option-checkbox" id="headerToggle">
+            </label>
+          </div>
+
+          <div class="pt-2 mt-2" style="border-top: 1px solid var(--rule);">
+            <button type="button" class="btn-subtle-full" id="btnOpenSidePanel">
+              Dock into browser sidebar
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <span class="footer-engine">VeloX Chronos</span>
+      <a href="https://vishwas.me" id="authorLink" class="footer-author" target="_blank" rel="noopener noreferrer">
+        &lt;/&gt; by VR
+      </a>
+    </footer>
+
+  </div>
+
+  <script src="../lib/flatpickr.min.js"></script>
+  <script src="../shared/timezones.js"></script>
+  <script src="../shared/time-engine.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

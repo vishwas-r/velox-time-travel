@@ -1,0 +1,955 @@
+/**
+ * VeloX Time Travel - Direction A: Obsidian Monochrome Stylesheet
+ * Human-crafted, anti-slop, clean developer instrument with Light & Dark themes.
+ */
+
+:root,
+body.theme-light {
+  --bg: #f9f9fb;
+  --surface: #ffffff;
+  --well: #f0f2f5;
+  --rule: #e2e4e8;
+  --rule-subtle: #eceef1;
+  --ink: #0f1115;
+  --ink-secondary: #5f6672;
+  --ink-tertiary: #8c93a0;
+  
+  --btn-primary-bg: #0f1115;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #232730;
+
+  --btn-ghost-bg: transparent;
+  --btn-ghost-border: #d4d8e0;
+  --btn-ghost-text: #5f6672;
+  --btn-ghost-hover-bg: #f0f2f5;
+  --btn-ghost-hover-text: #0f1115;
+
+  --chip-bg: #ffffff;
+  --chip-border: #d4d8e0;
+  --chip-text: #5f6672;
+  --chip-hover-bg: #f0f2f5;
+  --chip-hover-text: #0f1115;
+  --chip-active-bg: #0f1115;
+  --chip-active-border: #0f1115;
+  --chip-active-text: #ffffff;
+
+  --switch-track: #d1d5db;
+  --switch-knob: #ffffff;
+  --switch-track-on: #0f1115;
+  --switch-knob-on: #ffffff;
+
+  --status-active: #16a34a;
+  --status-paused: #d97706;
+  --status-inactive: #9ca3af;
+
+  --segment-track: #edf0f5;
+  --segment-track-border: #d4d9e2;
+  --segment-active-bg: #ffffff;
+  --segment-active-border: #c5cbd6;
+  --segment-active-text: #0f1115;
+  --segment-inactive-text: #606877;
+  --segment-inactive-hover: #f5f7fa;
+}
+
+body.theme-dark {
+  --bg: #0d0e11;
+  --surface: #13151a;
+  --well: #090a0d;
+  --rule: #20232a;
+  --rule-subtle: #191c22;
+  --ink: #f0f1f4;
+  --ink-secondary: #868c98;
+  --ink-tertiary: #525763;
+  
+  --btn-primary-bg: #f4f4f6;
+  --btn-primary-text: #0d0e11;
+  --btn-primary-hover: #e2e4e8;
+  
+  --btn-ghost-bg: transparent;
+  --btn-ghost-border: #22252c;
+  --btn-ghost-text: #868c98;
+  --btn-ghost-hover-bg: #181b21;
+  --btn-ghost-hover-text: #f0f1f4;
+
+  --chip-bg: #181c24;
+  --chip-border: #2a303c;
+  --chip-text: #9aa2b2;
+  --chip-hover-bg: #232834;
+  --chip-hover-text: #ffffff;
+  --chip-active-bg: #2d3444;
+  --chip-active-border: #444e63;
+  --chip-active-text: #ffffff;
+
+  --segment-track: #14171e;
+  --segment-track-border: #252a35;
+  --segment-active-bg: #2b3240;
+  --segment-active-border: #444e63;
+  --segment-active-text: #ffffff;
+  --segment-inactive-text: #949db0;
+  --segment-inactive-hover: #1c212b;
+
+  --switch-track: #262b35;
+  --switch-knob: #868c98;
+  --switch-track-on: #ffffff;
+  --switch-knob-on: #0d0e11;
+
+  --status-active: #22c55e;
+  --status-paused: #f59e0b;
+  --status-inactive: #525763;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body.velox-app {
+  width: 360px;
+  height: 580px;
+  max-height: 595px;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  overflow: hidden;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.app-shell {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ========================================================
+   HEADER (STICKY AT TOP)
+   ======================================================== */
+.app-header {
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.app-logo-wrap:hover {
+  transform: scale(1.05);
+  opacity: 0.95;
+}
+
+.brand-logo-img {
+  height: 22px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+body.theme-dark .brand-logo-img.logo-light {
+  display: none !important;
+}
+body.theme-dark .brand-logo-img.logo-dark {
+  display: block !important;
+}
+
+body.theme-light .brand-logo-img.logo-dark {
+  display: none !important;
+}
+body.theme-light .brand-logo-img.logo-light {
+  display: block !important;
+}
+
+.wordmark {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Theme toggle button */
+.btn-theme-toggle {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-secondary);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.btn-theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--ink-secondary);
+}
+
+body.theme-dark .icon-sun { display: block; }
+body.theme-dark .icon-moon { display: none; }
+body.theme-light .icon-sun { display: none; }
+body.theme-light .icon-moon { display: block; }
+
+/* Native Master Switch */
+.master-switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.master-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-slider {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--switch-track);
+  border-radius: 9999px;
+  transition: background-color 0.15s ease;
+}
+
+.switch-slider::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--switch-knob);
+  border-radius: 50%;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.master-switch input:checked + .switch-slider {
+  background-color: var(--switch-track-on);
+}
+
+.master-switch input:checked + .switch-slider::before {
+  transform: translateX(16px);
+  background-color: var(--switch-knob-on);
+}
+
+/* ========================================================
+   HERO CLOCK SECTION
+   ======================================================== */
+.hero-clock-section {
+  flex-shrink: 0;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--rule);
+  background-color: var(--surface);
+}
+
+.clock-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--ink-secondary);
+  margin-bottom: 4px;
+}
+
+.clock-status-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-rotate-clock {
+  background: var(--chip-bg);
+  border: 1px solid var(--rule);
+  color: var(--ink-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 2px 7px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+}
+
+.btn-rotate-clock:hover {
+  background: var(--chip-hover-bg);
+  color: var(--ink);
+  border-color: var(--rule-strong);
+}
+
+.btn-rotate-clock:hover .rotate-clock-icon {
+  transform: rotate(360deg);
+}
+
+.rotate-clock-icon {
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.btn-rotate-clock.spinning .rotate-clock-icon {
+  transform: rotate(720deg);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.status-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--status-inactive);
+  display: inline-block;
+}
+
+.status-indicator.active {
+  background-color: var(--status-active);
+}
+
+.status-indicator.paused {
+  background-color: var(--status-paused);
+}
+
+.status-label {
+  font-weight: 500;
+}
+
+.clock-digits {
+  font-family: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, monospace;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 3px;
+}
+
+.clock-meta-row {
+  font-size: 11px;
+  color: var(--ink-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-separator {
+  color: var(--ink-tertiary);
+}
+
+/* ========================================================
+   MODE NAVIGATION (Simple vs Advanced)
+   ======================================================== */
+.mode-nav {
+  flex-shrink: 0;
+  padding: 8px 16px 0 16px;
+  background-color: var(--bg);
+}
+
+.mode-segment {
+  display: flex;
+  background-color: var(--segment-track);
+  border: 1px solid var(--segment-track-border);
+  border-radius: 6px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.mode-radio {
+  display: none;
+}
+
+.mode-label {
+  flex: 1;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--segment-inactive-text);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.mode-label:hover {
+  color: var(--ink);
+  background-color: var(--segment-inactive-hover);
+}
+
+.mode-radio:checked + .mode-label {
+  background-color: var(--segment-active-bg);
+  border-color: var(--segment-active-border);
+  color: var(--segment-active-text);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ========================================================
+   BODY CONTENT & FORMS (SCROLLABLE AREA)
+   ======================================================== */
+.app-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 16px 16px 16px;
+  scroll-behavior: smooth;
+}
+
+.app-body::-webkit-scrollbar {
+  width: 4px;
+}
+.app-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.app-body::-webkit-scrollbar-thumb {
+  background-color: var(--rule-strong);
+  border-radius: 4px;
+}
+.app-body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ink-secondary);
+}
+
+/* Nudge strip */
+.nudge-strip {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-nudge {
+  background-color: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  color: var(--chip-text);
+  padding: 4px 9px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btn-nudge:hover {
+  background-color: var(--chip-hover-bg);
+  color: var(--chip-hover-text);
+}
+
+.btn-nudge.active {
+  background-color: var(--chip-active-bg);
+  border-color: var(--chip-active-border);
+  color: var(--chip-active-text);
+}
+
+/* Form fields */
+.form-field {
+  margin-bottom: 12px;
+}
+
+.field-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  margin: 0;
+}
+
+.tz-offset-pill {
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  color: var(--ink-tertiary);
+}
+
+.btn-inline-action {
+  background: transparent;
+  border: none;
+  color: var(--ink-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.btn-inline-action:hover {
+  color: var(--ink);
+}
+
+.field-input {
+  width: 100%;
+  background-color: var(--well);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 7px 10px;
+  color: var(--ink);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.field-input:focus {
+  border-color: var(--ink-secondary);
+}
+
+/* Custom In-DOM Picker Wrapper & Calendar (Never behind popup) */
+.input-picker-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.field-input-date {
+  padding-right: 36px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 12.5px;
+  letter-spacing: -0.01em;
+}
+
+.btn-picker-toggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 5px;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.12s, background-color 0.12s;
+}
+
+.btn-picker-toggle:hover {
+  color: var(--ink);
+  background-color: var(--chip-hover-bg);
+}
+
+/* ========================================================
+   FLATPICKR OBSIDIAN MONOCHROME THEME OVERRIDES
+   ======================================================== */
+.flatpickr-calendar {
+  position: fixed !important;
+  z-index: 999999 !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--rule) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 8px !important;
+  color: var(--ink) !important;
+  font-family: inherit !important;
+  width: 312px !important;
+  overflow: hidden !important;
+}
+
+.flatpickr-calendar::before,
+.flatpickr-calendar::after {
+  display: none !important;
+}
+
+.flatpickr-months,
+.flatpickr-innerContainer,
+.flatpickr-rContainer,
+.flatpickr-days,
+.dayContainer {
+  background: var(--surface) !important;
+}
+
+.flatpickr-months {
+  padding: 4px 0 !important;
+  border-bottom: 1px solid var(--rule) !important;
+}
+
+.flatpickr-months .flatpickr-month {
+  color: var(--ink) !important;
+  fill: var(--ink) !important;
+  height: 32px !important;
+  background: var(--surface) !important;
+}
+
+.flatpickr-current-month {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--ink) !important;
+  padding: 4px 0 0 0 !important;
+}
+
+.flatpickr-current-month input.cur-year {
+  color: var(--ink) !important;
+  font-weight: 600 !important;
+}
+
+.flatpickr-current-month .numInputWrapper span {
+  border-color: var(--rule) !important;
+}
+
+.flatpickr-current-month .numInputWrapper span:hover {
+  background: var(--chip-hover-bg) !important;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+  color: var(--ink-secondary) !important;
+  fill: var(--ink-secondary) !important;
+  padding: 6px 10px !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+  color: var(--ink) !important;
+  fill: var(--ink) !important;
+}
+
+span.flatpickr-weekday {
+  color: var(--ink-tertiary) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  background: var(--surface) !important;
+}
+
+.flatpickr-day {
+  color: var(--ink) !important;
+  border-radius: 4px !important;
+  border-color: transparent !important;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", monospace !important;
+  font-size: 12px !important;
+  line-height: 28px !important;
+  height: 28px !important;
+}
+
+.flatpickr-day:hover {
+  background: var(--chip-hover-bg) !important;
+  border-color: transparent !important;
+}
+
+.flatpickr-day.today {
+  border-color: var(--rule-strong) !important;
+}
+
+.flatpickr-day.today:hover {
+  background: var(--chip-hover-bg) !important;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+  font-weight: 700 !important;
+  border-color: transparent !important;
+}
+
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+  color: var(--ink-tertiary) !important;
+  opacity: 0.35 !important;
+}
+
+.flatpickr-time {
+  border-top: 1px solid var(--rule) !important;
+  background: var(--surface) !important;
+  height: 36px !important;
+  line-height: 36px !important;
+}
+
+.flatpickr-time input {
+  color: var(--ink) !important;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", monospace !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.flatpickr-time input:hover,
+.flatpickr-time input:focus {
+  background: var(--well) !important;
+}
+
+.flatpickr-time .flatpickr-time-separator {
+  color: var(--ink-tertiary) !important;
+}
+
+.flatpickr-time .numInputWrapper span.arrowUp:after {
+  border-bottom-color: var(--ink-secondary) !important;
+}
+.flatpickr-time .numInputWrapper span.arrowDown:after {
+  border-top-color: var(--ink-secondary) !important;
+}
+
+/* Options checkboxes */
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0 16px 0;
+}
+
+.option-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+.option-text {
+  font-size: 12px;
+  color: var(--ink-secondary);
+}
+
+.option-checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--btn-primary-bg);
+  cursor: pointer;
+}
+
+/* Action buttons */
+.actions-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-cta {
+  flex: 1;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.btn-cta:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.btn-ghost {
+  background-color: var(--btn-ghost-bg);
+  border: 1px solid var(--btn-ghost-border);
+  color: var(--btn-ghost-text);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btn-ghost:hover {
+  background-color: var(--btn-ghost-hover-bg);
+  color: var(--btn-ghost-hover-text);
+}
+
+/* ========================================================
+   ADVANCED PANELS
+   ======================================================== */
+.panel-section {
+  background-color: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.panel-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.panel-badge,
+.panel-val {
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  color: var(--ink-secondary);
+}
+
+.speed-strip {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-speed {
+  flex: 1;
+  background-color: var(--well);
+  border: 1px solid var(--rule);
+  color: var(--ink-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.12s ease;
+}
+
+.btn-speed:hover {
+  color: var(--ink);
+  border-color: var(--ink-secondary);
+}
+
+.btn-speed.active {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-color: var(--btn-primary-bg);
+}
+
+.panel-hint {
+  font-size: 11px;
+  color: var(--ink-tertiary);
+  margin-top: 6px;
+}
+
+.scrubber-range {
+  width: 100%;
+  accent-color: var(--btn-primary-bg);
+  cursor: pointer;
+}
+
+.scrubber-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--ink-tertiary);
+  margin-top: 4px;
+}
+
+.preset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.preset-card {
+  background-color: var(--well);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: var(--ink);
+  transition: border-color 0.12s ease;
+}
+
+.preset-card:hover {
+  border-color: var(--ink-secondary);
+}
+
+.preset-title {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.preset-badge {
+  font-size: 10px;
+  color: var(--ink-tertiary);
+  font-family: ui-monospace, monospace;
+}
+
+.preset-desc {
+  font-size: 11px;
+  color: var(--ink-secondary);
+  margin-top: 2px;
+}
+
+.btn-subtle-full {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink-secondary);
+  font-size: 12px;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-subtle-full:hover {
+  color: var(--ink);
+  border-color: var(--ink-secondary);
+}
+
+/* ========================================================
+   FOOTER (STICKY AT BOTTOM)
+   ======================================================== */
+.app-footer {
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  padding: 10px 16px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--ink-tertiary);
+  background-color: var(--bg);
+}
+
+.footer-engine {
+  font-size: 11px;
+}
+
+.footer-author {
+  color: var(--ink-secondary);
+  text-decoration: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  transition: color 0.12s ease;
+}
+
+.footer-author:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
