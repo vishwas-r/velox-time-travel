@@ -739,6 +739,12 @@
     });
 
     if (btnOpenSidePanel) {
+      var hasSidebar = (typeof chrome !== "undefined" && chrome.sidePanel && chrome.sidePanel.open) ||
+                       (typeof browser !== "undefined" && browser.sidebarAction && browser.sidebarAction.open);
+      if (!hasSidebar) {
+        var sidebarContainer = btnOpenSidePanel.closest(".adv-setting-item");
+        if (sidebarContainer) sidebarContainer.style.display = "none";
+      }
       btnOpenSidePanel.addEventListener("click", function () {
         if (typeof chrome !== "undefined" && chrome.sidePanel && chrome.sidePanel.open && activeTabId) {
           chrome.sidePanel.open({ tabId: activeTabId }).catch(function () {});

@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "VeloX Time Travel - Fake Date & Timezone Changer for Chrome",
+  "name": "VeloX Time Travel - Fake Date & Timezone",
   "short_name": "VeloX Time Travel",
   "description": "Pro time travel & timezone changer for developers and testers. Mock Date, freeze clock, fast-forward, presets, and timezone spoofing.",
   "version": "1.0.0",

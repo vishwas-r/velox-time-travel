@@ -1,12 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "VeloX Time Travel - Fake Date & Timezone Changer for Firefox",
+  "name": "VeloX Time Travel - Fake Date & Timezone",
   "short_name": "VeloX Time Travel",
   "description": "Pro time travel & timezone changer for developers and testers. Mock Date, freeze clock, fast-forward, presets, and timezone spoofing.",
   "version": "1.0.0",
   "browser_specific_settings": {
     "gecko": {
       "id": "timetravel@velox.soft",
+      "strict_min_version": "128.0"
+    },
+    "gecko_android": {
       "strict_min_version": "128.0"
     }
   },
