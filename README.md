@@ -8,29 +8,8 @@ VeloX Time Travel overrides browser `Date`, timers, and `Intl.DateTimeFormat` AP
 
 ---
 
-## 📸 Interface Showcase
-
-<p align="center">
-  <img src="screenshots/firefox/screenshot-1-time-travel-overview.png" alt="VeloX Time Travel Dashboard" width="850" />
-</p>
-
-<p align="center">
-  <img src="screenshots/firefox/screenshot-2-speed-warp-multiplier.png" alt="Speed Warp & Clock Multipliers" width="420" />
-  &nbsp;&nbsp;
-  <img src="screenshots/firefox/screenshot-5-in-page-hud-automation.png" alt="In-Page HUD and E2E Test Automation" width="420" />
-</p>
-
-<p align="center">
-  <img src="screenshots/firefox/screenshot-3-global-timezone-emulation.png" alt="Global Timezone Emulation" width="420" />
-  &nbsp;&nbsp;
-  <img src="screenshots/firefox/screenshot-4-one-click-qa-presets.png" alt="One-Click QA Presets" width="420" />
-</p>
-
----
-
 ## Table of Contents
 
-- [Interface Showcase](#-interface-showcase)
 - [Per-Tab Isolation](#per-tab-isolation)
 - [Header & Master Controls](#header--master-controls)
 - [Mode Switcher: Simple vs Advanced](#mode-switcher-simple-vs-advanced)
@@ -38,6 +17,7 @@ VeloX Time Travel overrides browser `Date`, timers, and `Intl.DateTimeFormat` AP
 - [Advanced Mode](#advanced-mode)
 - [In-Page Floating HUD](#in-page-floating-hud)
 - [HTTP Header Injection (`X-Mock-Date`)](#http-header-injection-x-mock-date)
+- [Screenshots & Interface Showcase](#-screenshots--interface-showcase)
 - [Author & License](#author--license)
 
 ---
@@ -162,6 +142,23 @@ X-Mock-Date: 2027-01-01T00:00:00.000Z
 ```
 
 This enables backend APIs in test or staging environments to synchronize server-side time checks with the browser's simulated clock.
+
+---
+
+## 📸 Screenshots & Interface Showcase
+
+### Dashboard Overview
+<p align="center">
+  <img src="screenshots/firefox/screenshot-1-time-travel-overview.png" alt="VeloX Time Travel Dashboard Overview" width="900" />
+</p>
+
+### Feature Gallery
+
+| Speed Multipliers & Time Warp | Live In-Page Floating HUD & API |
+| :---: | :---: |
+| <img src="screenshots/firefox/screenshot-2-speed-warp-multiplier.png" width="450" alt="Speed Multipliers" /><br/>**0.1x to 100x Speed Engine & Timeline Scrubber** | <img src="screenshots/firefox/screenshot-5-in-page-hud-automation.png" width="450" alt="Floating HUD" /><br/>**Live On-Page Telemetry & Test Automation** |
+| **Global Timezone Emulation** | **One-Click QA Edge-Case Presets** |
+| <img src="screenshots/firefox/screenshot-3-global-timezone-emulation.png" width="450" alt="Timezones" /><br/>**400+ IANA Zones & Auto-Match IP** | <img src="screenshots/firefox/screenshot-4-one-click-qa-presets.png" width="450" alt="QA Presets" /><br/>**Leap Day, Black Friday & Fiscal Rollovers** |
 
 ---
 
