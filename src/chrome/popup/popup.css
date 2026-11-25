@@ -150,6 +150,9 @@ body.velox-app {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #ffffff;
+  padding: 2px;
+  border-radius: 12px;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -163,20 +166,6 @@ body.velox-app {
   width: auto;
   display: block;
   object-fit: contain;
-}
-
-body.theme-dark .brand-logo-img.logo-light {
-  display: none !important;
-}
-body.theme-dark .brand-logo-img.logo-dark {
-  display: block !important;
-}
-
-body.theme-light .brand-logo-img.logo-dark {
-  display: none !important;
-}
-body.theme-light .brand-logo-img.logo-light {
-  display: block !important;
 }
 
 .wordmark {
@@ -952,4 +941,18 @@ span.flatpickr-weekday {
 .footer-author:hover {
   color: var(--ink);
   text-decoration: underline;
+}
+
+
+/* ========================================================
+   UTILITY HELPERS (REPLACES BOOTSTRAP)
+   ======================================================== */
+.d-none {
+  display: none !important;
+}
+.pt-2 {
+  padding-top: 8px !important;
+}
+.mt-2 {
+  margin-top: 8px !important;
 }
