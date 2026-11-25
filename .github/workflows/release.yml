@@ -1,0 +1,47 @@
+name: Release Extension Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build & Release Packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create distribution packages
+        run: |
+          mkdir -p dist
+          TAG_NAME="${GITHUB_REF_NAME}"
+          if [ -z "$TAG_NAME" ]; then
+            TAG_NAME="v1.0.0"
+          fi
+
+          # Package Firefox distribution
+          cd src/firefox
+          zip -r "../../dist/velox-time-travel-firefox-${TAG_NAME}.zip" ./*
+          cd ../..
+
+          # Package Chrome distribution
+          cd src/chrome
+          zip -r "../../dist/velox-time-travel-chrome-${TAG_NAME}.zip" ./*
+          cd ../..
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/velox-time-travel-firefox-*.zip
+            dist/velox-time-travel-chrome-*.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true
