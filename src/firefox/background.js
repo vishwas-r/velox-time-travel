@@ -5,9 +5,7 @@
 (function () {
   "use strict";
 
-  if (typeof chrome !== "undefined" && chrome.sidePanel && chrome.sidePanel.setPanelBehavior) {
-    chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: false }).catch(function () {});
-  }
+  // Side panel behavior (Firefox uses sidebar_action defined in manifest)
 
   function updateBadge(tabId, state) {
     if (!tabId || typeof chrome === "undefined" || !chrome.action) return;

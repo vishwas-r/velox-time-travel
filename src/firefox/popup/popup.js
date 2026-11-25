@@ -739,21 +739,17 @@
     });
 
     if (btnOpenSidePanel) {
-      var hasSidebar = (typeof chrome !== "undefined" && chrome.sidePanel && chrome.sidePanel.open) ||
-                       (typeof browser !== "undefined" && browser.sidebarAction && browser.sidebarAction.open);
+      var hasSidebar = (typeof browser !== "undefined" && browser.sidebarAction && browser.sidebarAction.open);
       if (!hasSidebar) {
         var sidebarContainer = btnOpenSidePanel.closest(".adv-setting-item");
         if (sidebarContainer) sidebarContainer.style.display = "none";
       }
       btnOpenSidePanel.addEventListener("click", function () {
-        if (typeof chrome !== "undefined" && chrome.sidePanel && chrome.sidePanel.open && activeTabId) {
-          chrome.sidePanel.open({ tabId: activeTabId }).catch(function () {});
-          window.close();
-        } else if (typeof browser !== "undefined" && browser.sidebarAction && browser.sidebarAction.open) {
+        if (typeof browser !== "undefined" && browser.sidebarAction && browser.sidebarAction.open) {
           browser.sidebarAction.open().catch(function () {});
           window.close();
         } else {
-          alert("Side panel is available in the browser sidebar.");
+          alert("Sidebar is available in the Firefox sidebar.");
         }
       });
     }
