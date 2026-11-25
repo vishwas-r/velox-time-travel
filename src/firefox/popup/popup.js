@@ -172,7 +172,7 @@
   // POPUP INITIALIZATION
   // ==========================================
   function initTimezones() {
-    timezoneSelect.innerHTML = "";
+    timezoneSelect.textContent = "";
     var groups = {};
     var all = Timezones.ALL_TIMEZONES;
 
@@ -201,20 +201,34 @@
   }
 
   function initPresets() {
-    presetContainer.innerHTML = "";
+    presetContainer.textContent = "";
     var presets = TimeEngine.PRESETS;
 
     for (var i = 0; i < presets.length; i++) {
       (function (preset) {
         var card = document.createElement("div");
         card.className = "preset-card";
-        card.innerHTML = [
-          '<div class="d-flex justify-content-between align-items-center">',
-          '  <span class="preset-title">' + preset.title + '</span>',
-          '  <span class="preset-badge">' + preset.badge + '</span>',
-          '</div>',
-          '<div class="preset-desc">' + preset.desc + '</div>'
-        ].join("");
+
+        var header = document.createElement("div");
+        header.className = "d-flex justify-content-between align-items-center";
+
+        var titleSpan = document.createElement("span");
+        titleSpan.className = "preset-title";
+        titleSpan.textContent = preset.title;
+
+        var badgeSpan = document.createElement("span");
+        badgeSpan.className = "preset-badge";
+        badgeSpan.textContent = preset.badge;
+
+        header.appendChild(titleSpan);
+        header.appendChild(badgeSpan);
+
+        var descDiv = document.createElement("div");
+        descDiv.className = "preset-desc";
+        descDiv.textContent = preset.desc;
+
+        card.appendChild(header);
+        card.appendChild(descDiv);
 
         card.addEventListener("click", function () {
           applyPreset(preset);

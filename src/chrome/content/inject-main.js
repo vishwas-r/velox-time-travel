@@ -896,13 +896,38 @@
       var container = document.createElement("div");
       var initialThemeClass = (currentState.theme === "light") ? "velox-theme-light" : "velox-theme-dark";
       container.className = "velox-hud " + initialThemeClass;
-      container.innerHTML = [
-        '<span class="velox-badge" id="hudBadge">VeloX</span>',
-        '<span class="velox-time" id="hudTime">--:--:--</span>',
-        '<button class="velox-btn" id="hudBtnFreeze">Freeze</button>',
-        '<button class="velox-btn" id="hudBtnReset">Reset</button>',
-        '<button class="velox-btn-close" id="hudBtnClose" title="Hide HUD">&times;</button>'
-      ].join("");
+
+      var badge = document.createElement("span");
+      badge.className = "velox-badge";
+      badge.id = "hudBadge";
+      badge.textContent = "VeloX";
+
+      var time = document.createElement("span");
+      time.className = "velox-time";
+      time.id = "hudTime";
+      time.textContent = "--:--:--";
+
+      var btnFreezeEl = document.createElement("button");
+      btnFreezeEl.className = "velox-btn";
+      btnFreezeEl.id = "hudBtnFreeze";
+      btnFreezeEl.textContent = "Freeze";
+
+      var btnResetEl = document.createElement("button");
+      btnResetEl.className = "velox-btn";
+      btnResetEl.id = "hudBtnReset";
+      btnResetEl.textContent = "Reset";
+
+      var btnCloseEl = document.createElement("button");
+      btnCloseEl.className = "velox-btn-close";
+      btnCloseEl.id = "hudBtnClose";
+      btnCloseEl.title = "Hide HUD";
+      btnCloseEl.textContent = "×";
+
+      container.appendChild(badge);
+      container.appendChild(time);
+      container.appendChild(btnFreezeEl);
+      container.appendChild(btnResetEl);
+      container.appendChild(btnCloseEl);
       hudShadow.appendChild(container);
 
       var btnFreeze = hudShadow.getElementById("hudBtnFreeze");
