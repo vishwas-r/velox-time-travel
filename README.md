@@ -8,8 +8,29 @@ VeloX Time Travel overrides browser `Date`, timers, and `Intl.DateTimeFormat` AP
 
 ---
 
+## 📸 Interface Showcase
+
+<p align="center">
+  <img src="screenshots/firefox/screenshot-1-time-travel-overview.png" alt="VeloX Time Travel Dashboard" width="850" />
+</p>
+
+<p align="center">
+  <img src="screenshots/firefox/screenshot-2-speed-warp-multiplier.png" alt="Speed Warp & Clock Multipliers" width="420" />
+  &nbsp;&nbsp;
+  <img src="screenshots/firefox/screenshot-5-in-page-hud-automation.png" alt="In-Page HUD and E2E Test Automation" width="420" />
+</p>
+
+<p align="center">
+  <img src="screenshots/firefox/screenshot-3-global-timezone-emulation.png" alt="Global Timezone Emulation" width="420" />
+  &nbsp;&nbsp;
+  <img src="screenshots/firefox/screenshot-4-one-click-qa-presets.png" alt="One-Click QA Presets" width="420" />
+</p>
+
+---
+
 ## Table of Contents
 
+- [Interface Showcase](#-interface-showcase)
 - [Per-Tab Isolation](#per-tab-isolation)
 - [Header & Master Controls](#header--master-controls)
 - [Mode Switcher: Simple vs Advanced](#mode-switcher-simple-vs-advanced)
