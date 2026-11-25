@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "VeloX Time Travel - Fake Date & Timezone",
   "short_name": "VeloX Time Travel",
-  "description": "Pro time travel & timezone changer for developers and testers. Mock Date, freeze clock, fast-forward, presets, and timezone spoofing.",
+  "description": "Time travel & timezone simulator for developers and testers. Mock Date, freeze clock, fast-forward, and test edge-case presets.",
   "version": "1.0.0",
   "icons": {
     "16": "icons/icon16.png",
